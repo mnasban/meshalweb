@@ -73,6 +73,7 @@ class NameHandler(BaseHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    server_address = ('', 8000)
-    httpd = HTTPServer(server_address, NameHandler)
+    port = int(os.environ.get('PORT', 8000))
+    server_address = ('', port)
+    httpd = ThreadHTTPServer(server_address, Shortener)
     httpd.serve_forever()
